@@ -8,10 +8,9 @@ namespace FindTheWayOut_Game
         {
             Map _map = new Map();
             Movement _movement = new Movement();
-            _map.Stage1Map();
+            _map.Stage1();
             _movement.SetPlayerStartPosition();
-            _movement.GetDirection();
+            _movement.MoveCharacter();
         }
     }
 }
-//kör debugg på movement systemet
