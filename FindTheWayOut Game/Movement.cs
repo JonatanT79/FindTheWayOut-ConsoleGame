@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FindTheWayOut_Game
 {
     class Movement
     {
         public Coordinate PlayerChar { get; set; }
+        Player _player = new Player();
 
         public void MoveCharacter()
         {
@@ -71,6 +74,48 @@ namespace FindTheWayOut_Game
             if (MapSymbol == "#")
             {
                 return false;
+            }
+            else if (MapSymbol == "Y")
+            {
+                Items _item = new Items() { Name = "Axe" };
+                _player.Inventory.Add(_item);
+
+                Console.SetCursorPosition(53, 15);
+                Console.WriteLine("Collected 1 Axe");
+            }
+            else if (MapSymbol == "D")
+            {
+                var ItemList = _player.Inventory;
+
+                var AxeSearch = from e in ItemList
+                                where e.Name == "Axe"
+                                group e by e.Name into Item
+                                select new
+                                {
+                                    Name = Item.Key,
+                                    Count = Item.Count()
+                                };
+
+                var AxeCount = 0;
+                if (AxeSearch.Count() != 0)
+                {
+                    AxeCount = AxeSearch.ToList()[0].Count;
+                }
+
+                Console.SetCursorPosition(53, 15);
+                Console.WriteLine("Amount of Axes: " + AxeCount);
+
+                if (AxeCount > 0)
+                {
+                    var RemoveItem = _player.Inventory.Where(d => d.Name == "Axe").First();
+                    _player.Inventory.Remove(RemoveItem);
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
 
             return true;
