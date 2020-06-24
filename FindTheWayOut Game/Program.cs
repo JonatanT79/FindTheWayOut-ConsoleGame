@@ -6,11 +6,8 @@ namespace FindTheWayOut_Game
     {
         static void Main(string[] args)
         {
-            Map _map = new Map();
-            Movement _movement = new Movement();
-            _map.Stage1();
-            _movement.SetPlayerStartPosition();
-            _movement.MoveCharacter();
+            Start.StartStage1();
         }
     }
 }
+// display inventory on the right side

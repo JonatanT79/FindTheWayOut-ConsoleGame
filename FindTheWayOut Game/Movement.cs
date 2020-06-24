@@ -75,7 +75,7 @@ namespace FindTheWayOut_Game
             {
                 return false;
             }
-            else if (MapSymbol == "Y")
+            else if (MapSymbol == "A")
             {
                 Items _item = new Items() { Name = "Axe" };
                 _player.Inventory.Add(_item);
