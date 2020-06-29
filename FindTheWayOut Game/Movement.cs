@@ -8,7 +8,7 @@ namespace FindTheWayOut_Game
     {
         public Coordinate PlayerChar { get; set; }
         Player _player = new Player();
-
+        
         public void MoveCharacter()
         {
             ConsoleKeyInfo keyInfo;
@@ -77,11 +77,21 @@ namespace FindTheWayOut_Game
             }
             else if (MapSymbol == "A")
             {
-                Items _item = new Items() { Name = "Axe" };
-                _player.Inventory.Add(_item);
+                Items _items = new Items() { Name = "Axe" };
+                _player.Inventory.Add(_items);
 
                 Console.SetCursorPosition(53, 15);
                 Console.WriteLine("Collected 1 Axe");
+                Start.DisplayPlayerInventory(_player.Inventory);
+            }
+            else if(MapSymbol == "S")
+            {
+                Items _items = new Items() {Name = "Sword" };
+                _player.Inventory.Add(_items);
+
+                Console.SetCursorPosition(53, 15);
+                Console.WriteLine("Collected 1 Sword");
+                Start.DisplayPlayerInventory(_player.Inventory);
             }
             else if (MapSymbol == "D")
             {
@@ -92,7 +102,6 @@ namespace FindTheWayOut_Game
                                 group e by e.Name into Item
                                 select new
                                 {
-                                    Name = Item.Key,
                                     Count = Item.Count()
                                 };
 
@@ -112,10 +121,12 @@ namespace FindTheWayOut_Game
 
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+
+                return false;
+            }
+            else if(MapSymbol == "M")
+            {
+
             }
 
             return true;

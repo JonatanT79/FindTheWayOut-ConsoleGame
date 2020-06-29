@@ -10,4 +10,4 @@ namespace FindTheWayOut_Game
         }
     }
 }
-// display inventory on the right side
+// Fix that player needs a sword to kill the monster (M)
