@@ -8,7 +8,6 @@ namespace FindTheWayOut_Game
     {
         public Coordinate PlayerChar { get; set; }
         Player _player = new Player();
-        
         public void MoveCharacter()
         {
             ConsoleKeyInfo keyInfo;
@@ -84,9 +83,9 @@ namespace FindTheWayOut_Game
                 Console.WriteLine("Collected 1 Axe");
                 Start.DisplayPlayerInventory(_player.Inventory);
             }
-            else if(MapSymbol == "S")
+            else if (MapSymbol == "S")
             {
-                Items _items = new Items() {Name = "Sword" };
+                Items _items = new Items() { Name = "Sword" };
                 _player.Inventory.Add(_items);
 
                 Console.SetCursorPosition(53, 15);
@@ -95,9 +94,9 @@ namespace FindTheWayOut_Game
             }
             else if (MapSymbol == "D")
             {
-                var ItemList = _player.Inventory;
+                var PlayerInventory = _player.Inventory;
 
-                var AxeSearch = from e in ItemList
+                var AxeSearch = from e in PlayerInventory
                                 where e.Name == "Axe"
                                 group e by e.Name into Item
                                 select new
@@ -111,9 +110,6 @@ namespace FindTheWayOut_Game
                     AxeCount = AxeSearch.ToList()[0].Count;
                 }
 
-                Console.SetCursorPosition(53, 15);
-                Console.WriteLine("Amount of Axes: " + AxeCount);
-
                 if (AxeCount > 0)
                 {
                     var RemoveItem = _player.Inventory.Where(d => d.Name == "Axe").First();
@@ -124,9 +120,35 @@ namespace FindTheWayOut_Game
 
                 return false;
             }
-            else if(MapSymbol == "M")
+            else if (MapSymbol == "M")
             {
+                var PlayerInventory = _player.Inventory;
 
+                var SwordSearch = from e in PlayerInventory
+                                  where e.Name == "Sword"
+                                  group e by e.Name into Item
+                                  select new
+                                  {
+                                      Count = Item.Count()
+                                  };
+
+                int SwordCount = 0;
+                if (SwordSearch.Count() != 0)
+                {
+                    SwordCount = SwordSearch.ToList()[0].Count;
+                }
+
+                if (SwordCount > 0)
+                {
+                    //FightEvent
+
+                    var Sword = _player.Inventory.Where(e => e.Name == "Sword").FirstOrDefault();
+                    _player.Inventory.Remove(Sword);
+
+                    return true;
+                }
+
+                return false;
             }
 
             return true;

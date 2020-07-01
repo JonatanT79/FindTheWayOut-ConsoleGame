@@ -10,4 +10,4 @@ namespace FindTheWayOut_Game
         }
     }
 }
-// Fix that player needs a sword to kill the monster (M)
+// Fix fightevent
