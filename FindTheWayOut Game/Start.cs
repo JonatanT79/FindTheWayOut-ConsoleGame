@@ -56,6 +56,7 @@ namespace FindTheWayOut_Game
                                           Name = Items.Key,
                                           Count = Items.Count()
                                       };
+
             int row = 1;
             foreach (var item in GroupInventoryItems)
             {
@@ -63,6 +64,10 @@ namespace FindTheWayOut_Game
                 Console.WriteLine(item.Name + ": " + item.Count + " piece/pieces");
                 row++;
             }
+
+            //This removes old text on the row under
+            Console.SetCursorPosition(90, 5 + row);
+            Console.Write("                              ");
         }
     }
 }

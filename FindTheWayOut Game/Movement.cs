@@ -92,6 +92,15 @@ namespace FindTheWayOut_Game
                 Console.WriteLine("Collected 1 Sword");
                 Start.DisplayPlayerInventory(_player.Inventory);
             }
+            else if (MapSymbol == "K")
+            {
+                Items _items = new Items() { Name = "Key" };
+                _player.Inventory.Add(_items);
+
+                Console.SetCursorPosition(53, 15);
+                Console.WriteLine("Collected 1 Key");
+                Start.DisplayPlayerInventory(_player.Inventory);
+            }
             else if (MapSymbol == "D")
             {
                 var PlayerInventory = _player.Inventory;
@@ -112,8 +121,9 @@ namespace FindTheWayOut_Game
 
                 if (AxeCount > 0)
                 {
-                    var RemoveItem = _player.Inventory.Where(d => d.Name == "Axe").First();
-                    _player.Inventory.Remove(RemoveItem);
+                    var Axe = PlayerInventory.Where(d => d.Name == "Axe").FirstOrDefault();
+                    PlayerInventory.Remove(Axe);
+                    Start.DisplayPlayerInventory(PlayerInventory);
 
                     return true;
                 }
@@ -142,8 +152,38 @@ namespace FindTheWayOut_Game
                 {
                     //FightEvent
 
-                    var Sword = _player.Inventory.Where(e => e.Name == "Sword").FirstOrDefault();
-                    _player.Inventory.Remove(Sword);
+                    var Sword = PlayerInventory.Where(e => e.Name == "Sword").FirstOrDefault();
+                    PlayerInventory.Remove(Sword);
+                    Start.DisplayPlayerInventory(PlayerInventory);
+
+                    return true;
+                }
+
+                return false;
+            }
+            else if (MapSymbol == "E")
+            {
+                var PlayerInventory = _player.Inventory;
+
+                var KeySearch = from e in PlayerInventory
+                                where e.Name == "Key"
+                                group e by e.Name into Item
+                                select new
+                                {
+                                    Count = Item.Count()
+                                };
+
+                int KeyCount = 0;
+                if (KeySearch.Count() != 0)
+                {
+                    KeyCount = KeySearch.ToList()[0].Count;
+                }
+
+                if (KeyCount != 0)
+                {
+                    var Key = PlayerInventory.Where(e => e.Name == "Key").FirstOrDefault();
+                    PlayerInventory.Remove(Key);
+                    Start.DisplayPlayerInventory(PlayerInventory);
 
                     return true;
                 }
