@@ -10,5 +10,4 @@ namespace FindTheWayOut_Game
         }
     }
 }
-//Fix bug, symbol is still 'there' when it is replaced with '.'
-// Fix fightevent
+// Fix fightevent 

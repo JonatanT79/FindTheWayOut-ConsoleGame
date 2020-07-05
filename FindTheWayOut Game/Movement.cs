@@ -44,9 +44,9 @@ namespace FindTheWayOut_Game
                 x = PlayerChar.x + x,
                 y = PlayerChar.y + y
             };
-            string GetMapSymbol = Map.Stage1Map[NewHeroPosition.y, NewHeroPosition.x - 44];
 
-            if (CanMove(GetMapSymbol))
+            string MapSymbol = Map.Stage1Map[NewHeroPosition.y, NewHeroPosition.x - 44];
+            if (CanMove(MapSymbol, NewHeroPosition.x, NewHeroPosition.y))
             {
                 // anropar metoden som tar bort det föregående tecknet efter förflyttning
                 RemoveHero();
@@ -68,7 +68,7 @@ namespace FindTheWayOut_Game
             Console.Write(".");
         }
 
-        public bool CanMove(string MapSymbol)
+        public bool CanMove(string MapSymbol, int XCoord, int YCoord)
         {
             if (MapSymbol == "#")
             {
@@ -78,6 +78,7 @@ namespace FindTheWayOut_Game
             {
                 Items _items = new Items() { Name = "Axe" };
                 _player.Inventory.Add(_items);
+                Map.Stage1Map[YCoord, XCoord - 44] = ".";
 
                 Console.SetCursorPosition(53, 15);
                 Console.WriteLine("Collected 1 Axe");
@@ -87,6 +88,7 @@ namespace FindTheWayOut_Game
             {
                 Items _items = new Items() { Name = "Sword" };
                 _player.Inventory.Add(_items);
+                Map.Stage1Map[YCoord, XCoord - 44] = ".";
 
                 Console.SetCursorPosition(53, 15);
                 Console.WriteLine("Collected 1 Sword");
@@ -96,6 +98,7 @@ namespace FindTheWayOut_Game
             {
                 Items _items = new Items() { Name = "Key" };
                 _player.Inventory.Add(_items);
+                Map.Stage1Map[YCoord, XCoord - 44] = ".";
 
                 Console.SetCursorPosition(53, 15);
                 Console.WriteLine("Collected 1 Key");
@@ -123,6 +126,7 @@ namespace FindTheWayOut_Game
                 {
                     var Axe = PlayerInventory.Where(d => d.Name == "Axe").FirstOrDefault();
                     PlayerInventory.Remove(Axe);
+                    Map.Stage1Map[YCoord, XCoord - 44] = ".";
                     Start.DisplayPlayerInventory(PlayerInventory);
 
                     return true;
@@ -154,6 +158,7 @@ namespace FindTheWayOut_Game
 
                     var Sword = PlayerInventory.Where(e => e.Name == "Sword").FirstOrDefault();
                     PlayerInventory.Remove(Sword);
+                    Map.Stage1Map[YCoord, XCoord - 44] = ".";
                     Start.DisplayPlayerInventory(PlayerInventory);
 
                     return true;
@@ -183,6 +188,7 @@ namespace FindTheWayOut_Game
                 {
                     var Key = PlayerInventory.Where(e => e.Name == "Key").FirstOrDefault();
                     PlayerInventory.Remove(Key);
+                    Map.Stage1Map[YCoord, XCoord - 44] = ".";
                     Start.DisplayPlayerInventory(PlayerInventory);
 
                     return true;

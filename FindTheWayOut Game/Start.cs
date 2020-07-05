@@ -40,10 +40,6 @@ namespace FindTheWayOut_Game
             Console.WriteLine("D = Door");
             Console.WriteLine("E = Exit");
         }
-        public static void LineDivide()
-        {
-            Console.WriteLine("-----------------------------------");
-        }
         public static void DisplayPlayerInventory(List<Items> PlayerInventory)
         {
             Console.SetCursorPosition(90, 5);
@@ -68,6 +64,10 @@ namespace FindTheWayOut_Game
             //This removes old text on the row under
             Console.SetCursorPosition(90, 5 + row);
             Console.Write("                              ");
+        }
+        public static void LineDivide()
+        {
+            Console.WriteLine("-----------------------------------");
         }
     }
 }
