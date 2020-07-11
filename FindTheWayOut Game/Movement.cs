@@ -70,6 +70,8 @@ namespace FindTheWayOut_Game
 
         public bool CanMove(string MapSymbol, int XCoord, int YCoord)
         {
+            var PlayerInventory = _player.Inventory;
+
             if (MapSymbol == "#")
             {
                 return false;
@@ -106,8 +108,6 @@ namespace FindTheWayOut_Game
             }
             else if (MapSymbol == "D")
             {
-                var PlayerInventory = _player.Inventory;
-
                 var AxeSearch = from e in PlayerInventory
                                 where e.Name == "Axe"
                                 group e by e.Name into Item
@@ -136,8 +136,6 @@ namespace FindTheWayOut_Game
             }
             else if (MapSymbol == "M")
             {
-                var PlayerInventory = _player.Inventory;
-
                 var SwordSearch = from e in PlayerInventory
                                   where e.Name == "Sword"
                                   group e by e.Name into Item
@@ -168,8 +166,6 @@ namespace FindTheWayOut_Game
             }
             else if (MapSymbol == "E")
             {
-                var PlayerInventory = _player.Inventory;
-
                 var KeySearch = from e in PlayerInventory
                                 where e.Name == "Key"
                                 group e by e.Name into Item
@@ -191,6 +187,9 @@ namespace FindTheWayOut_Game
                     Map.Stage1Map[YCoord, XCoord - 44] = ".";
                     Start.DisplayPlayerInventory(PlayerInventory);
 
+                    //Stage 2
+                    Console.Clear();
+                    Console.WriteLine("Loading next map...");
                     return true;
                 }
 
