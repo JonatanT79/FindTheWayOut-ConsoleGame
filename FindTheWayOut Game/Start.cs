@@ -13,18 +13,18 @@ namespace FindTheWayOut_Game
             Map _map = new Map();
             Movement _movement = new Movement();
             _map.Stage1();
-            DisplayPlayerStats();
+            DisplayPlayerStats(_player);
             SymbolInfo();
             DisplayPlayerInventory(_player.Inventory);
             _movement.SetPlayerStartPosition();
             _movement.MoveCharacter();
         }
 
-        public static void DisplayPlayerStats()
+        public static void DisplayPlayerStats(Player player)
         {
             Console.SetCursorPosition(0, 1);
-            Console.WriteLine("Name: " + _player.Name);
-            Console.WriteLine("Health: " + _player.Health);
+            Console.WriteLine("Name: " + player.Name);
+            Console.WriteLine("Health: " + player.Health);
             LineDivide();
         }
         public static void SymbolInfo()

@@ -7,8 +7,6 @@ namespace FindTheWayOut_Game
     class Monsters
     {
         public string Name { get; set; }
-
-        //Monstret ska göra random skada på player - därav behövs inget hp
         public int Attack { get; set; }
         public List<Monsters> Tier1Monsters()
         {

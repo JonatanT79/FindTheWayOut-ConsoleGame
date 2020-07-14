@@ -8,6 +8,7 @@ namespace FindTheWayOut_Game
     {
         public Coordinate PlayerChar { get; set; }
         Player _player = new Player();
+        Fight _fight = new Fight();
         public void MoveCharacter()
         {
             ConsoleKeyInfo keyInfo;
@@ -152,7 +153,7 @@ namespace FindTheWayOut_Game
 
                 if (SwordCount > 0)
                 {
-                    //FightEvent
+                    _fight.Stage1FightEvent(_player);
 
                     var Sword = PlayerInventory.Where(e => e.Name == "Sword").FirstOrDefault();
                     PlayerInventory.Remove(Sword);
