@@ -7,17 +7,16 @@ namespace FindTheWayOut_Game
 {
     static class Start
     {
-        static Player _player = new Player();
-        public static void StartStage1()
+        public static void StartStage1(Player player)
         {
             Map _map = new Map();
             Movement _movement = new Movement();
             _map.Stage1();
-            DisplayPlayerStats(_player);
+            DisplayPlayerStats(player);
             SymbolInfo();
-            DisplayPlayerInventory(_player.Inventory);
-            _movement.SetPlayerStartPosition();
-            _movement.MoveCharacter();
+            DisplayPlayerInventory(player.Inventory);
+            _movement.SetPlayerStartPosition(player);
+            _movement.MoveCharacter(player);
         }
 
         public static void DisplayPlayerStats(Player player)
@@ -39,6 +38,10 @@ namespace FindTheWayOut_Game
             Console.WriteLine("S = Sword");
             Console.WriteLine("D = Door");
             Console.WriteLine("E = Exit");
+
+            //Activity Log
+            Console.SetCursorPosition(54, 15);
+            Console.WriteLine("Activity Log");
         }
         public static void DisplayPlayerInventory(List<Items> PlayerInventory)
         {

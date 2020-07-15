@@ -6,10 +6,12 @@ namespace FindTheWayOut_Game
     {
         static void Main(string[] args)
         {
-            Start.StartStage1();
+            Player player = new Player();
+            Console.WriteLine("What's your name?");
+            player.Name = Console.ReadLine();
+
+            Start.StartStage1(player);
         }
     }
 }
-//skicka in player som parameter (börja från program)
-// Fix fightevent 
-// Skriv ut information vilka monster för just den mappen det som finns (loopa igenom respektive monsterlista)
+// Skriv ut information om vilka monster för just den mappen det som finns (loopa igenom respektive monsterlista)
