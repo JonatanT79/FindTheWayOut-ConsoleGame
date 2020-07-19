@@ -7,10 +7,12 @@ namespace FindTheWayOut_Game
         static void Main(string[] args)
         {
             Player player = new Player();
+            int StageNumber = 1;
+
             Console.WriteLine("What's your name?");
             player.Name = Console.ReadLine();
-
-            Start.StartStage1(player);
+            Console.Clear();
+            Start.StartStage1(player, StageNumber);
         }
     }
 }

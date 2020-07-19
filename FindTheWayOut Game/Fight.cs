@@ -17,6 +17,24 @@ namespace FindTheWayOut_Game
             player.Health -= Monster.Attack;
             Start.DisplayPlayerStats(player);
         }
+        public void Stage2FightEvent(Player player) 
+        {
+            int MonsterCount = _monsters.Tier2Monsters().Count;
+            int MonsterIndex = rnd.Next(0, MonsterCount);
+            var Monster = _monsters.Tier2Monsters()[MonsterIndex];
+
+            player.Health -= Monster.Attack;
+            Start.DisplayPlayerStats(player);
+        }
+        public void Stage3FightEvent(Player player)
+        {
+            int MonsterCount = _monsters.Tier3Monsters().Count;
+            int MonsterIndex = rnd.Next(0, MonsterCount);
+            var Monster = _monsters.Tier3Monsters()[MonsterIndex];
+
+            player.Health -= Monster.Attack;
+            Start.DisplayPlayerStats(player);
+        }
         //gameover metod
     }
 }

@@ -7,18 +7,23 @@ namespace FindTheWayOut_Game
 {
     static class Start
     {
-        public static void StartStage1(Player player)
+        public static void StartStage1(Player player, int StageNumber)
         {
             Map _map = new Map();
             Movement _movement = new Movement();
             _map.Stage1();
+            DisplayCurrentStage(StageNumber);
             DisplayPlayerStats(player);
             SymbolInfo();
             DisplayPlayerInventory(player.Inventory);
             _movement.SetPlayerStartPosition(player);
             _movement.MoveCharacter(player);
         }
-
+        public static void DisplayCurrentStage(int StageNumber)
+        {
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine("Current stage: " + StageNumber);
+        }
         public static void DisplayPlayerStats(Player player)
         {
             Console.SetCursorPosition(0, 1);

@@ -152,7 +152,8 @@ namespace FindTheWayOut_Game
 
                 if (SwordCount > 0)
                 {
-                    _fight.Stage1FightEvent(player);
+                    //ifsats -> kolla vilken stage
+                    _fight.Stage2FightEvent(player);
 
                     var Sword = PlayerInventory.Where(e => e.Name == "Sword").FirstOrDefault();
                     PlayerInventory.Remove(Sword);
