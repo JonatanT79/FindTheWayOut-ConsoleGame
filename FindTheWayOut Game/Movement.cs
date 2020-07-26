@@ -8,7 +8,7 @@ namespace FindTheWayOut_Game
     {
         public Coordinate PlayerChar { get; set; }
         Fight _fight = new Fight();
-        public void MoveCharacter(Player player)
+        public void MoveCharacter(Player player, int StageNumber)
         {
             ConsoleKeyInfo keyInfo;
 
@@ -18,25 +18,25 @@ namespace FindTheWayOut_Game
                 if (keyInfo.Key == ConsoleKey.UpArrow || keyInfo.Key == ConsoleKey.W)
                 {
                     // anropar metoden och minskar y koordinaten med 1
-                    ModifyPosition(0, -1, player);
+                    ModifyPosition(0, -1, player, StageNumber);
                 }
                 else if (keyInfo.Key == ConsoleKey.RightArrow || keyInfo.Key == ConsoleKey.D)
                 {
                     // anropar metoden och ökar x koordinaten med 1
-                    ModifyPosition(1, 0, player);
+                    ModifyPosition(1, 0, player, StageNumber);
                 }
                 else if (keyInfo.Key == ConsoleKey.DownArrow || keyInfo.Key == ConsoleKey.S)
                 {
-                    ModifyPosition(0, 1, player);
+                    ModifyPosition(0, 1, player, StageNumber);
                 }
                 else if (keyInfo.Key == ConsoleKey.LeftArrow || keyInfo.Key == ConsoleKey.A)
                 {
-                    ModifyPosition(-1, 0, player);
+                    ModifyPosition(-1, 0, player, StageNumber);
                 }
             }
         }
 
-        public void ModifyPosition(int x, int y, Player player)
+        public void ModifyPosition(int x, int y, Player player, int StageNumber)
         {
             Coordinate NewHeroPosition = new Coordinate()
             {
@@ -46,7 +46,7 @@ namespace FindTheWayOut_Game
             };
 
             string MapSymbol = Map.Stage1Map[NewHeroPosition.y, NewHeroPosition.x - 44];
-            if (CanMove(MapSymbol, NewHeroPosition.x, NewHeroPosition.y, player))
+            if (CanMove(MapSymbol, NewHeroPosition.x, NewHeroPosition.y, player, StageNumber))
             {
                 // anropar metoden som tar bort det föregående tecknet efter förflyttning
                 RemoveHero();
@@ -68,7 +68,7 @@ namespace FindTheWayOut_Game
             Console.Write(".");
         }
 
-        public bool CanMove(string MapSymbol, int XCoord, int YCoord, Player player)
+        public bool CanMove(string MapSymbol, int XCoord, int YCoord, Player player, int StageNumber)
         {
             var PlayerInventory = player.Inventory;
 
@@ -152,8 +152,18 @@ namespace FindTheWayOut_Game
 
                 if (SwordCount > 0)
                 {
-                    //ifsats -> kolla vilken stage
-                    _fight.Stage2FightEvent(player);
+                    if (StageNumber == 1)
+                    {
+                        _fight.Stage1FightEvent(player);
+                    }
+                    else if (StageNumber == 2)
+                    {
+                        _fight.Stage2FightEvent(player);
+                    }
+                    else if (StageNumber == 3)
+                    {
+                        _fight.Stage3FightEvent(player);
+                    }
 
                     var Sword = PlayerInventory.Where(e => e.Name == "Sword").FirstOrDefault();
                     PlayerInventory.Remove(Sword);
@@ -200,13 +210,13 @@ namespace FindTheWayOut_Game
             return true;
         }
 
-        public void SetPlayerStartPosition(Player player)
+        public void SetPlayerStartPosition(Player player, int StageNumber)
         {
             // Tilldelar gubbens startposition + initierar PlayerChar
             PlayerChar = new Coordinate() { x = 46, y = 12 };
 
             // en del av startpositionen, sätt alltid 0,0 för att gubben ska utgå från startpositionen vid koordinaten ovanför ^^
-            ModifyPosition(0, 0, player);
+            ModifyPosition(0, 0, player, StageNumber);
         }
     }
 }

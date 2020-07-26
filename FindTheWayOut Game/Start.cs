@@ -7,22 +7,54 @@ namespace FindTheWayOut_Game
 {
     static class Start
     {
-        public static void StartStage1(Player player, int StageNumber)
+        public static int StartStage1(Player player, int StageNumber)
         {
             Map _map = new Map();
             Movement _movement = new Movement();
             _map.Stage1();
             DisplayCurrentStage(StageNumber);
+            DisplayCurruntStageMonsters(StageNumber);
             DisplayPlayerStats(player);
             SymbolInfo();
             DisplayPlayerInventory(player.Inventory);
-            _movement.SetPlayerStartPosition(player);
-            _movement.MoveCharacter(player);
+            _movement.SetPlayerStartPosition(player, StageNumber);
+            _movement.MoveCharacter(player, StageNumber);
+            StageNumber++;
+
+            return StageNumber;
         }
         public static void DisplayCurrentStage(int StageNumber)
         {
             Console.SetCursorPosition(0, 0);
             Console.WriteLine("Current stage: " + StageNumber);
+        }
+        public static void DisplayCurruntStageMonsters(int StageNumber)
+        {
+            Monsters _monsters = new Monsters();
+            Console.SetCursorPosition(0, 15);
+            Console.WriteLine("Available monsters in this Stage/Map");
+
+            if(StageNumber == 1)
+            {
+                foreach (var item in _monsters.Tier1Monsters())
+                {
+                    Console.WriteLine(item.Name + " - " + item.Attack + " Attack");
+                }
+            }
+            else if (StageNumber == 2)
+            {
+                foreach (var item in _monsters.Tier2Monsters())
+                {
+                    Console.WriteLine(item.Name + " - " + item.Attack + " Attack");
+                }
+            }
+            else if (StageNumber == 3)
+            {
+                foreach (var item in _monsters.Tier3Monsters())
+                {
+                    Console.WriteLine(item.Name + " - " + item.Attack + " Attack");
+                }
+            }
         }
         public static void DisplayPlayerStats(Player player)
         {

@@ -35,6 +35,7 @@ namespace FindTheWayOut_Game
             player.Health -= Monster.Attack;
             Start.DisplayPlayerStats(player);
         }
+
         //gameover metod
     }
 }
