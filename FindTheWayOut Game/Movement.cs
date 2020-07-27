@@ -7,13 +7,15 @@ namespace FindTheWayOut_Game
     class Movement
     {
         public Coordinate PlayerChar { get; set; }
+        public bool EnteredExit { get; set; }
         Fight _fight = new Fight();
         public void MoveCharacter(Player player, int StageNumber)
         {
             ConsoleKeyInfo keyInfo;
+            //EnteredExit = false? , detta är för att reseta när en ny stage börjar?
 
             //loopa igenom gå-kommandot så länge villkoret är true
-            while ((keyInfo = Console.ReadKey(true)).Key != ConsoleKey.Escape)
+            while ((keyInfo = Console.ReadKey(true)).Key != ConsoleKey.Escape && (EnteredExit == false))
             {
                 if (keyInfo.Key == ConsoleKey.UpArrow || keyInfo.Key == ConsoleKey.W)
                 {
@@ -35,7 +37,6 @@ namespace FindTheWayOut_Game
                 }
             }
         }
-
         public void ModifyPosition(int x, int y, Player player, int StageNumber)
         {
             Coordinate NewHeroPosition = new Coordinate()
@@ -67,7 +68,6 @@ namespace FindTheWayOut_Game
             Console.SetCursorPosition(PlayerChar.x, PlayerChar.y);
             Console.Write(".");
         }
-
         public bool CanMove(string MapSymbol, int XCoord, int YCoord, Player player, int StageNumber)
         {
             var PlayerInventory = player.Inventory;
@@ -200,7 +200,8 @@ namespace FindTheWayOut_Game
 
                     //Stage 2
                     Console.Clear();
-                    Console.WriteLine("Loading next map...");
+                    EnteredExit = true;
+
                     return true;
                 }
 
@@ -209,7 +210,6 @@ namespace FindTheWayOut_Game
 
             return true;
         }
-
         public void SetPlayerStartPosition(Player player, int StageNumber)
         {
             // Tilldelar gubbens startposition + initierar PlayerChar
