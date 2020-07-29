@@ -11,6 +11,7 @@ namespace FindTheWayOut_Game
         {
             Map _map = new Map();
             Movement _movement = new Movement();
+
             _map.Stage1();
             DisplayCurrentStage(StageNumber);
             DisplayCurruntStageMonsters(StageNumber);
@@ -21,6 +22,21 @@ namespace FindTheWayOut_Game
             _movement.MoveCharacter(player, StageNumber);
             StageNumber++;
 
+            return StageNumber;
+        }
+        public static int StartStage2(Player player, int StageNumber)
+        {
+            Map _map = new Map();
+            Movement _movement = new Movement();
+
+            Console.Clear();
+            _map.Stage2();
+            DisplayCurrentStage(StageNumber);
+            DisplayCurruntStageMonsters(StageNumber);
+            _movement.SetPlayerStartPosition(player, StageNumber);
+            _movement.MoveCharacter(player, StageNumber);
+
+            StageNumber++;
             return StageNumber;
         }
         public static void DisplayCurrentStage(int StageNumber)

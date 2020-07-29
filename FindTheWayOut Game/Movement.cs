@@ -12,7 +12,6 @@ namespace FindTheWayOut_Game
         public void MoveCharacter(Player player, int StageNumber)
         {
             ConsoleKeyInfo keyInfo;
-            //EnteredExit = false? , detta är för att reseta när en ny stage börjar?
 
             //loopa igenom gå-kommandot så länge villkoret är true
             while ((keyInfo = Console.ReadKey(true)).Key != ConsoleKey.Escape && (EnteredExit == false))
@@ -198,7 +197,6 @@ namespace FindTheWayOut_Game
                     Map.Stage1Map[YCoord, XCoord - 44] = ".";
                     Start.DisplayPlayerInventory(PlayerInventory);
 
-                    //Stage 2
                     Console.Clear();
                     EnteredExit = true;
 

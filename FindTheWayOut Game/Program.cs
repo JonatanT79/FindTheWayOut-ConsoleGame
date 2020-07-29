@@ -15,7 +15,9 @@ namespace FindTheWayOut_Game
 
             //Start Stages
             StageNumber = Start.StartStage1(player, StageNumber);
+            StageNumber = Start.StartStage2(player, StageNumber);
         }
     }
 }
 // Fin justeringar + buggar
+//gameover metod
