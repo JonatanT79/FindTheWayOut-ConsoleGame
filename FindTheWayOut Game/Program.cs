@@ -20,4 +20,6 @@ namespace FindTheWayOut_Game
     }
 }
 // Fin justeringar + buggar
-//gameover metod
+// starting next stage... text - Reset player inventory
+// gameover metod
+// Fixa Stage3

@@ -14,7 +14,7 @@ namespace FindTheWayOut_Game
             ConsoleKeyInfo keyInfo;
 
             //loopa igenom gå-kommandot så länge villkoret är true
-            while ((keyInfo = Console.ReadKey(true)).Key != ConsoleKey.Escape && (EnteredExit == false))
+            while ((EnteredExit == false) && (keyInfo = Console.ReadKey(true)).Key != ConsoleKey.Escape)
             {
                 if (keyInfo.Key == ConsoleKey.UpArrow || keyInfo.Key == ConsoleKey.W)
                 {
@@ -45,7 +45,20 @@ namespace FindTheWayOut_Game
                 y = PlayerChar.y + y
             };
 
-            string MapSymbol = Map.Stage1Map[NewHeroPosition.y, NewHeroPosition.x - 44];
+            string MapSymbol = "";
+            if (StageNumber == 1)
+            {
+                MapSymbol = Map.Stage1Map[NewHeroPosition.y, NewHeroPosition.x - 44];
+            }
+            else if (StageNumber == 2)
+            {
+                MapSymbol = Map.Stage2Map[NewHeroPosition.y, NewHeroPosition.x - 44];
+            }
+            else if (StageNumber == 3)
+            {
+                //MapSymbol = Map.Stage3Map[NewHeroPosition.y, NewHeroPosition.x - 44];
+            }
+
             if (CanMove(MapSymbol, NewHeroPosition.x, NewHeroPosition.y, player, StageNumber))
             {
                 // anropar metoden som tar bort det föregående tecknet efter förflyttning
@@ -79,7 +92,7 @@ namespace FindTheWayOut_Game
             {
                 Items _items = new Items() { Name = "Axe" };
                 PlayerInventory.Add(_items);
-                Map.Stage1Map[YCoord, XCoord - 44] = ".";
+                CheckCurrentStageForMapSymbolRemove(StageNumber, XCoord, YCoord);
 
                 Console.SetCursorPosition(53, 16);
                 Console.WriteLine("Collected 1 Axe");
@@ -89,7 +102,7 @@ namespace FindTheWayOut_Game
             {
                 Items _items = new Items() { Name = "Sword" };
                 PlayerInventory.Add(_items);
-                Map.Stage1Map[YCoord, XCoord - 44] = ".";
+                CheckCurrentStageForMapSymbolRemove(StageNumber, XCoord, YCoord);
 
                 Console.SetCursorPosition(53, 15);
                 Console.WriteLine("Collected 1 Sword");
@@ -99,7 +112,7 @@ namespace FindTheWayOut_Game
             {
                 Items _items = new Items() { Name = "Key" };
                 PlayerInventory.Add(_items);
-                Map.Stage1Map[YCoord, XCoord - 44] = ".";
+                CheckCurrentStageForMapSymbolRemove(StageNumber, XCoord, YCoord);
 
                 Console.SetCursorPosition(53, 15);
                 Console.WriteLine("Collected 1 Key");
@@ -125,7 +138,7 @@ namespace FindTheWayOut_Game
                 {
                     var Axe = PlayerInventory.Where(d => d.Name == "Axe").FirstOrDefault();
                     PlayerInventory.Remove(Axe);
-                    Map.Stage1Map[YCoord, XCoord - 44] = ".";
+                    CheckCurrentStageForMapSymbolRemove(StageNumber, XCoord, YCoord);
                     Start.DisplayPlayerInventory(PlayerInventory);
 
                     return true;
@@ -166,7 +179,7 @@ namespace FindTheWayOut_Game
 
                     var Sword = PlayerInventory.Where(e => e.Name == "Sword").FirstOrDefault();
                     PlayerInventory.Remove(Sword);
-                    Map.Stage1Map[YCoord, XCoord - 44] = ".";
+                    CheckCurrentStageForMapSymbolRemove(StageNumber, XCoord, YCoord);
                     Start.DisplayPlayerInventory(PlayerInventory);
 
                     return true;
@@ -194,10 +207,8 @@ namespace FindTheWayOut_Game
                 {
                     var Key = PlayerInventory.Where(e => e.Name == "Key").FirstOrDefault();
                     PlayerInventory.Remove(Key);
-                    Map.Stage1Map[YCoord, XCoord - 44] = ".";
+                    CheckCurrentStageForMapSymbolRemove(StageNumber, XCoord, YCoord);
                     Start.DisplayPlayerInventory(PlayerInventory);
-
-                    Console.Clear();
                     EnteredExit = true;
 
                     return true;
@@ -210,11 +221,38 @@ namespace FindTheWayOut_Game
         }
         public void SetPlayerStartPosition(Player player, int StageNumber)
         {
-            // Tilldelar gubbens startposition + initierar PlayerChar
-            PlayerChar = new Coordinate() { x = 46, y = 12 };
+            // Kollar vilken stage och tilldelar gubbens startposition + initierar PlayerChar
+
+            if (StageNumber == 1)
+            {
+                PlayerChar = new Coordinate() { x = 46, y = 12 };
+            }
+            else if (StageNumber == 2)
+            {
+                PlayerChar = new Coordinate() { x = 52, y = 12 };
+            }
+            else if (StageNumber == 3)
+            {
+                PlayerChar = new Coordinate() { x = 53, y = 12 };
+            }
 
             // en del av startpositionen, sätt alltid 0,0 för att gubben ska utgå från startpositionen vid koordinaten ovanför ^^
             ModifyPosition(0, 0, player, StageNumber);
+        }
+        public void CheckCurrentStageForMapSymbolRemove(int StageNumber, int XCoord, int YCoord)
+        {
+            if (StageNumber == 1)
+            {
+                Map.Stage1Map[YCoord, XCoord - 44] = ".";
+            }
+            else if (StageNumber == 2)
+            {
+                Map.Stage2Map[YCoord, XCoord - 44] = ".";
+            }
+            else if (StageNumber == 3)
+            {
+
+            }
         }
     }
 }

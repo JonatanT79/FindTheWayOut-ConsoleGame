@@ -16,8 +16,8 @@ namespace FindTheWayOut_Game
             DisplayCurrentStage(StageNumber);
             DisplayCurruntStageMonsters(StageNumber);
             DisplayPlayerStats(player);
-            SymbolInfo();
             DisplayPlayerInventory(player.Inventory);
+            SymbolInfo();
             _movement.SetPlayerStartPosition(player, StageNumber);
             _movement.MoveCharacter(player, StageNumber);
             StageNumber++;
@@ -33,10 +33,13 @@ namespace FindTheWayOut_Game
             _map.Stage2();
             DisplayCurrentStage(StageNumber);
             DisplayCurruntStageMonsters(StageNumber);
+            DisplayPlayerStats(player);
+            DisplayPlayerInventory(player.Inventory);
+            SymbolInfo();
             _movement.SetPlayerStartPosition(player, StageNumber);
             _movement.MoveCharacter(player, StageNumber);
-
             StageNumber++;
+
             return StageNumber;
         }
         public static void DisplayCurrentStage(int StageNumber)
@@ -79,23 +82,6 @@ namespace FindTheWayOut_Game
             Console.WriteLine("Health: " + player.Health);
             LineDivide();
         }
-        public static void SymbolInfo()
-        {
-            Console.SetCursorPosition(0, 5);
-            Console.WriteLine("@ = You");
-            Console.WriteLine("M = Monster");
-            Console.WriteLine("# = Wall");
-            Console.WriteLine(". = Floor");
-            Console.WriteLine("K = Key");
-            Console.WriteLine("A = Axe");
-            Console.WriteLine("S = Sword");
-            Console.WriteLine("D = Door");
-            Console.WriteLine("E = Exit");
-
-            //Activity Log
-            Console.SetCursorPosition(54, 15);
-            Console.WriteLine("Activity Log");
-        }
         public static void DisplayPlayerInventory(List<Items> PlayerInventory)
         {
             Console.SetCursorPosition(90, 5);
@@ -120,6 +106,23 @@ namespace FindTheWayOut_Game
             //This removes old text on the row under
             Console.SetCursorPosition(90, 5 + row);
             Console.Write("                              ");
+        }
+        public static void SymbolInfo()
+        {
+            Console.SetCursorPosition(0, 5);
+            Console.WriteLine("@ = You");
+            Console.WriteLine("M = Monster");
+            Console.WriteLine("# = Wall");
+            Console.WriteLine(". = Floor");
+            Console.WriteLine("K = Key");
+            Console.WriteLine("A = Axe");
+            Console.WriteLine("S = Sword");
+            Console.WriteLine("D = Door");
+            Console.WriteLine("E = Exit");
+
+            //Activity Log
+            Console.SetCursorPosition(54, 15);
+            Console.WriteLine("Activity Log");
         }
         public static void LineDivide()
         {
