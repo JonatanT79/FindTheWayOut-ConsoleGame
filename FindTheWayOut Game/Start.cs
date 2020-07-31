@@ -124,6 +124,20 @@ namespace FindTheWayOut_Game
             Console.SetCursorPosition(54, 15);
             Console.WriteLine("Activity Log");
         }
+        public static void PrepareForNextStage(Player player, int StageNumber)
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            player.Inventory.Clear();
+            Console.WriteLine("Stage Completed!");
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Current Player stats:");
+            Console.WriteLine("Name: " + player.Name);
+            Console.WriteLine("Health: " + player.Health);
+            Console.WriteLine("Press any key to start Stage" + StageNumber + "...");
+            Console.ReadKey();
+        }
         public static void LineDivide()
         {
             Console.WriteLine("-----------------------------------");

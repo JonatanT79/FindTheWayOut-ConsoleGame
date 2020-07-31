@@ -15,6 +15,11 @@ namespace FindTheWayOut_Game
             var Monster = _monsters.Tier1Monsters()[MonsterIndex];
 
             player.Health -= Monster.Attack;
+            if(player.Health <= 0)
+            {
+                GameOver();
+            }
+
             Start.DisplayPlayerStats(player);
         }
         public void Stage2FightEvent(Player player) 
@@ -24,6 +29,11 @@ namespace FindTheWayOut_Game
             var Monster = _monsters.Tier2Monsters()[MonsterIndex];
 
             player.Health -= Monster.Attack;
+            if (player.Health <= 0)
+            {
+                GameOver();
+            }
+
             Start.DisplayPlayerStats(player);
         }
         public void Stage3FightEvent(Player player)
@@ -33,9 +43,22 @@ namespace FindTheWayOut_Game
             var Monster = _monsters.Tier3Monsters()[MonsterIndex];
 
             player.Health -= Monster.Attack;
+            if (player.Health <= 0)
+            {
+                GameOver();
+            }
+
             Start.DisplayPlayerStats(player);
         }
-
-        //gameover metod
+        public void GameOver()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(52, 10);
+            Console.WriteLine("Game Over");
+            Console.SetCursorPosition(39, 11);
+            Console.WriteLine("Do you want to restart and try again?");
+            string UserInput = Console.ReadLine();
+        }
     }
 }

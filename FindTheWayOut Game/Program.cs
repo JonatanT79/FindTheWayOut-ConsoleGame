@@ -8,18 +8,19 @@ namespace FindTheWayOut_Game
         static void Main(string[] args)
         {
             Player player = new Player();
-
             Console.WriteLine("What's your name?");
             player.Name = Console.ReadLine();
             Console.Clear();
 
             //Start Stages
             StageNumber = Start.StartStage1(player, StageNumber);
+            Start.PrepareForNextStage(player, StageNumber);
+
             StageNumber = Start.StartStage2(player, StageNumber);
         }
     }
 }
-// Fin justeringar + buggar
-// starting next stage... text - Reset player inventory
-// gameover metod
+
+// Gameover metod
 // Fixa Stage3
+// Fin justeringar + buggar
