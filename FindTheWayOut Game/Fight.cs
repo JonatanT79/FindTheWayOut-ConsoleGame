@@ -15,14 +15,14 @@ namespace FindTheWayOut_Game
             var Monster = _monsters.Tier1Monsters()[MonsterIndex];
 
             player.Health -= Monster.Attack;
-            if(player.Health <= 0)
+            if (player.Health <= 0)
             {
-                GameOver();
+                GameOver(player);
             }
 
             Start.DisplayPlayerStats(player);
         }
-        public void Stage2FightEvent(Player player) 
+        public void Stage2FightEvent(Player player)
         {
             int MonsterCount = _monsters.Tier2Monsters().Count;
             int MonsterIndex = rnd.Next(0, MonsterCount);
@@ -31,7 +31,7 @@ namespace FindTheWayOut_Game
             player.Health -= Monster.Attack;
             if (player.Health <= 0)
             {
-                GameOver();
+                GameOver(player);
             }
 
             Start.DisplayPlayerStats(player);
@@ -45,20 +45,39 @@ namespace FindTheWayOut_Game
             player.Health -= Monster.Attack;
             if (player.Health <= 0)
             {
-                GameOver();
+                GameOver(player);
             }
 
             Start.DisplayPlayerStats(player);
         }
-        public void GameOver()
+        public void GameOver(Player player)
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(52, 10);
             Console.WriteLine("Game Over");
             Console.SetCursorPosition(39, 11);
-            Console.WriteLine("Do you want to restart and try again?");
-            string UserInput = Console.ReadLine();
+            Console.WriteLine("Do you want to restart and try again? Yes/No");
+            Console.ResetColor();
+            string UserInput = Console.ReadLine().ToUpper();
+
+            while (UserInput != "YES" && UserInput != "NO")
+            {
+                Console.Clear();
+                Console.WriteLine("You must enter an answer (Yes or No)");
+                UserInput = Console.ReadLine().ToUpper();
+            }
+
+            if (UserInput == "YES")
+            {
+                Console.Clear();
+                Program.StartGame();
+            }
+            else
+            {
+                Console.WriteLine("Exiting Game...");
+                Environment.Exit(0);
+            }
         }
     }
 }

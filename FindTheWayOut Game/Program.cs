@@ -7,6 +7,10 @@ namespace FindTheWayOut_Game
         public static int StageNumber { get; set; } = 1;
         static void Main(string[] args)
         {
+            StartGame();
+        }
+        public static void StartGame()
+        {
             Player player = new Player();
             Console.WriteLine("What's your name?");
             player.Name = Console.ReadLine();
@@ -21,6 +25,6 @@ namespace FindTheWayOut_Game
     }
 }
 
-// Gameover metod
+// Fixa att mapparna resetas när man startar om spelet
 // Fixa Stage3
 // Fin justeringar + buggar

@@ -53,7 +53,7 @@ namespace FindTheWayOut_Game
             Console.SetCursorPosition(0, 15);
             Console.WriteLine("Available monsters in this Stage/Map");
 
-            if(StageNumber == 1)
+            if (StageNumber == 1)
             {
                 foreach (var item in _monsters.Tier1Monsters())
                 {
