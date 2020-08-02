@@ -25,6 +25,5 @@ namespace FindTheWayOut_Game
     }
 }
 
-// Fixa att mapparna resetas när man startar om spelet
 // Fixa Stage3
 // Fin justeringar + buggar

@@ -17,7 +17,7 @@ namespace FindTheWayOut_Game
             player.Health -= Monster.Attack;
             if (player.Health <= 0)
             {
-                GameOver(player);
+                GameOver();
             }
 
             Start.DisplayPlayerStats(player);
@@ -31,7 +31,7 @@ namespace FindTheWayOut_Game
             player.Health -= Monster.Attack;
             if (player.Health <= 0)
             {
-                GameOver(player);
+                GameOver();
             }
 
             Start.DisplayPlayerStats(player);
@@ -45,12 +45,12 @@ namespace FindTheWayOut_Game
             player.Health -= Monster.Attack;
             if (player.Health <= 0)
             {
-                GameOver(player);
+                GameOver();
             }
 
             Start.DisplayPlayerStats(player);
         }
-        public void GameOver(Player player)
+        public void GameOver()
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;

@@ -18,8 +18,8 @@ namespace FindTheWayOut_Game
             DisplayPlayerStats(player);
             DisplayPlayerInventory(player.Inventory);
             SymbolInfo();
-            _movement.SetPlayerStartPosition(player, StageNumber);
-            _movement.MoveCharacter(player, StageNumber);
+            _movement.SetPlayerStartPosition(player, _map.Stage1Map, StageNumber);
+            _movement.MoveCharacter(player, _map.Stage1Map, StageNumber);
             StageNumber++;
 
             return StageNumber;
@@ -36,8 +36,8 @@ namespace FindTheWayOut_Game
             DisplayPlayerStats(player);
             DisplayPlayerInventory(player.Inventory);
             SymbolInfo();
-            _movement.SetPlayerStartPosition(player, StageNumber);
-            _movement.MoveCharacter(player, StageNumber);
+            _movement.SetPlayerStartPosition(player, _map.Stage2Map, StageNumber);
+            _movement.MoveCharacter(player, _map.Stage2Map, StageNumber);
             StageNumber++;
 
             return StageNumber;
