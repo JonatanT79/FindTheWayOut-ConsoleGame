@@ -221,7 +221,7 @@ namespace FindTheWayOut_Game
             }
             else if (StageNumber == 3)
             {
-                PlayerChar = new Coordinate() { x = 53, y = 12 };
+                PlayerChar = new Coordinate() { x = 47, y = 1 };
             }
 
             // en del av startpositionen, sätt alltid 0,0 för att gubben ska utgå från startpositionen vid koordinaten ovanför ^^

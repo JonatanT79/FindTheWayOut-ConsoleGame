@@ -8,7 +8,7 @@ namespace FindTheWayOut_Game
     class Player
     {
         public string Name { get; set; }
-        public int Health { get; set; } = 1;
+        public int Health { get; set; } = 20;
 
         public List<Items> Inventory = new List<Items>();
     }

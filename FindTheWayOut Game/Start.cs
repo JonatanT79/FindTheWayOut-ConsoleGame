@@ -42,6 +42,24 @@ namespace FindTheWayOut_Game
 
             return StageNumber;
         }
+        public static int StartStage3(Player player, int StageNumber)
+        {
+            Map _map = new Map();
+            Movement _movement = new Movement();
+
+            Console.Clear();
+            _map.Stage3();
+            DisplayCurrentStage(StageNumber);
+            DisplayCurruntStageMonsters(StageNumber);
+            DisplayPlayerStats(player);
+            DisplayPlayerInventory(player.Inventory);
+            SymbolInfo();
+            _movement.SetPlayerStartPosition(player, _map.Stage3Map, StageNumber);
+            _movement.MoveCharacter(player, _map.Stage3Map, StageNumber);
+            StageNumber++;
+
+            return StageNumber;
+        }
         public static void DisplayCurrentStage(int StageNumber)
         {
             Console.SetCursorPosition(0, 0);
@@ -77,6 +95,8 @@ namespace FindTheWayOut_Game
         }
         public static void DisplayPlayerStats(Player player)
         {
+            Console.SetCursorPosition(0, 2);
+            Console.WriteLine("                   ");
             Console.SetCursorPosition(0, 1);
             Console.WriteLine("Name: " + player.Name);
             Console.WriteLine("Health: " + player.Health);
