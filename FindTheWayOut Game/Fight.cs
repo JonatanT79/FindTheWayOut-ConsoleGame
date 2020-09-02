@@ -71,7 +71,7 @@ namespace FindTheWayOut_Game
             if (UserInput == "YES")
             {
                 Console.Clear();
-                Program.StartGame();
+                Start.StartGame();
             }
             else
             {

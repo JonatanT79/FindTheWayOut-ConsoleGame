@@ -7,6 +7,33 @@ namespace FindTheWayOut_Game
 {
     static class Start
     {
+        public static void StartGame()
+        {
+            Player player = new Player();
+            int StageNumber = 1;
+            Console.WriteLine("What's your name?");
+            player.Name = Console.ReadLine();
+            Console.Clear();
+
+            //Start Stages
+            StageNumber = StartStage1(player, StageNumber);
+            PrepareForNextStage(player, StageNumber);
+
+            StageNumber = StartStage2(player, StageNumber);
+            PrepareForNextStage(player, StageNumber);
+
+            StageNumber = StartStage3(player, StageNumber);
+
+            //If compiler come this far means the player wins
+            PlayerWonGame();
+        }
+        public static void PlayerWonGame()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("You Win!");
+            Console.ResetColor();
+        }
         public static int StartStage1(Player player, int StageNumber)
         {
             Map _map = new Map();
